@@ -1,18 +1,21 @@
-import Header from '../components/Header'
-import Filters from '../components/Filters'
-import ProductGrid from '../components/ProductGrid'
-import Footer from '../components/Footer'
-import '../styles/plp.css'
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+import Header from "../components/Header";
+import Filters from "../components/Filters";
+import ProductGrid from "../components/ProductGrid";
+import Footer from "../components/Footer";
+import "../styles/plp.css";
 
 async function getProducts() {
-  const res = await fetch('https://fakestoreapi.com/products', {
-    cache: 'no-store'
-  })
-  return res.json()
+  const res = await fetch("https://fakestoreapi.com/products", {
+    cache: "no-store",
+  });
+  return res.json();
 }
 
 export default async function Home() {
-  const products = await getProducts()
+  const products = await getProducts();
 
   return (
     <>
@@ -26,5 +29,5 @@ export default async function Home() {
       </main>
       <Footer />
     </>
-  )
+  );
 }
