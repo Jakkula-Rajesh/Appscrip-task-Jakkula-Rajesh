@@ -1,21 +1,21 @@
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+"use client";
 
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Filters from "../components/Filters";
 import ProductGrid from "../components/ProductGrid";
 import Footer from "../components/Footer";
 import "../styles/plp.css";
 
-async function getProducts() {
-  const res = await fetch("https://fakestoreapi.com/products", {
-    cache: "no-store",
-  });
-  return res.json();
-}
+export default function Home() {
+  const [products, setProducts] = useState([]);
 
-export default async function Home() {
-  const products = await getProducts();
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then(res => res.json())
+      .then(data => setProducts(data))
+      .catch(err => console.error(err));
+  }, []);
 
   return (
     <>
